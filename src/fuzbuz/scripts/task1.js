@@ -1,7 +1,17 @@
 "use strict";
 
 function dscount(str, firstChar, secondChar) {
-    return str.toLowerCase().split(firstChar.toLowerCase() + secondChar.toLowerCase()).length - 1;
+    var count = 0;
+    str = str.toLowerCase();
+    firstChar = firstChar.toLowerCase();
+    secondChar = secondChar.toLowerCase();
+
+    for(var i = 0; i < str.length - 1; i++){
+        if(str.charAt(i) == firstChar && str.charAt(i + 1) == secondChar) {
+            count++;
+        }
+    }
+    return count;
 } 
 
 try {
@@ -12,7 +22,7 @@ try {
     test(dscount, ['_ba______', 'a', 'b'], 0);
     test(dscount, ['_a__b____', 'a', 'b'], 0);
     test(dscount, ['-ab-аb-ab', 'a', 'b'], 2);
-    /*test(dscount, ['aAa', 'a', 'a'], 2);*/
+    test(dscount, ['aAa', 'a', 'a'], 2);
 
     console.info("Congratulations! All tests success passed.");
 } catch(e) {
